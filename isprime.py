@@ -17,12 +17,19 @@ for i in range(100000):
     inputs = np.append(inputs, rand_int)
     targets = np.append(targets, is_prime(rand_int))
 
-model = Sequential([Input(shape=(1,)), Dense(100), Activation('sigmoid')])
+model = Sequential()
+model.add(Dense(4, input_shape=(1,), activation='relu'))
+model.add(Dense(4, activation='relu'))
+model.add(Dense(1, activation='sigmoid'))
 
-model.compile(loss='mean_squared_error', optimizer='sgd', metrics=['accuracy'])
+model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.summary()
 model.fit(inputs, targets, validation_split=0.1, epochs=2, use_multiprocessing=True)
 
-test = np.array([5])
-print(model.predict(test))
-print(model.evaluate(test))
+test = np.array([])
+for i in range(100):
+    rand_int = np.random.randint(1000000)
+    test = np.append(inputs, rand_int)
+
+predictions = model.predict_classes(test)
+print(predictions)
