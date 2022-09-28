@@ -26,3 +26,7 @@ model.add(Dense(1, activation='relu'))
 
 model.compile(loss='mean_squared_error', optimizer='sgd', metrics=['accuracy'])
 model.fit(inputs, targets, validation_split=0.1, epochs=2, use_multiprocessing=True)
+
+test = np.array([4])
+print(model.predict(test))
+print(model.evaluate(test))
