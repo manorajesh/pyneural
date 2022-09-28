@@ -12,24 +12,28 @@ def is_prime(n):
 
 inputs = np.array([])
 targets = np.array([])
-for i in range(100000):
+for _ in range(100000):
     rand_int = np.random.randint(1000000)
     inputs = np.append(inputs, rand_int)
     targets = np.append(targets, is_prime(rand_int))
 
 model = Sequential()
-model.add(Dense(4, input_shape=(1,), activation='relu'))
-model.add(Dense(4, activation='relu'))
-model.add(Dense(1, activation='sigmoid'))
+model.add(Dense(6, input_shape=(1,), activation='sigmoid', kernal_initializer='l2'))
+for i in range(4, 0, -1):
+    model.add(Dense(6//i, activation='sigmoid', kernal_initializer='l2'))
+model.add(Dense(1, activation='relu', ))
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.summary()
-model.fit(inputs, targets, validation_split=0.1, epochs=2, use_multiprocessing=True)
+model.fit(inputs, targets, validation_split=0.2, epochs=200, use_multiprocessing=True)
 
 test = np.array([])
-for i in range(100):
-    rand_int = np.random.randint(1000000)
+for _ in range(100):
+    rand_int = np.random.randint(100)
     test = np.append(inputs, rand_int)
 
-predictions = model.predict_classes(test)
-print(predictions)
+predictions = model.predict(test)
+for i in range(len(test)):
+    print(f"test={test[i]}, prediction={predictions[i]}")
+
+model.save('model')
