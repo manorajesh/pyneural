@@ -18,9 +18,9 @@ for _ in range(100000):
     targets = np.append(targets, is_prime(rand_int))
 
 model = Sequential()
-model.add(Dense(6, input_shape=(1,), activation='sigmoid', kernal_initializer='l2'))
+model.add(Dense(6, input_shape=(1,), activation='sigmoid', kernel_regularizer='l2'))
 for i in range(4, 0, -1):
-    model.add(Dense(6//i, activation='sigmoid', kernal_initializer='l2'))
+    model.add(Dense(6//i, activation='sigmoid', kernel_regularizer='l2'))
 model.add(Dense(1, activation='relu', ))
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
