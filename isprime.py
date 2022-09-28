@@ -57,8 +57,8 @@ print("\r\n")
 
 model = Sequential()
 model.add(Dense(4, input_shape=(1,), activation='sigmoid', kernel_regularizer='l2'))
-for i in range(10):
-    model.add(Dense(512//i+1, activation='sigmoid', kernel_regularizer='l2'))
+for _ in range(10):
+    model.add(Dense(128, activation='sigmoid', kernel_regularizer='l2'))
 model.add(Dense(1, activation='relu', ))
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
