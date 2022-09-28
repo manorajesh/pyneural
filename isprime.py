@@ -19,8 +19,8 @@ for _ in range(100000):
 
 model = Sequential()
 model.add(Dense(6, input_shape=(1,), activation='sigmoid', kernel_regularizer='l2'))
-for i in range(4, 0, -1):
-    model.add(Dense(6//i, activation='sigmoid', kernel_regularizer='l2'))
+for _ in range(100):
+    model.add(Dense(6, activation='sigmoid', kernel_regularizer='l2'))
 model.add(Dense(1, activation='relu', ))
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
