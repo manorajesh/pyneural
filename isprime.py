@@ -76,5 +76,7 @@ predictions = model.predict(test)
 for i in range(len(test)):
     print(f"test={test[i]}, prediction={predictions[i]}")
 
+model.evaluate(test, targets)
+
 model.save('model')
 print("Model saved")
