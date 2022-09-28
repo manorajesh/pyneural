@@ -56,14 +56,14 @@ with Spinner():
 print("\r\n")
 
 model = Sequential()
-model.add(Dense(6, input_shape=(1,), activation='sigmoid', kernel_regularizer='l2'))
-for _ in range(100):
-    model.add(Dense(6, activation='sigmoid', kernel_regularizer='l2'))
+model.add(Dense(4, input_shape=(1,), activation='sigmoid', kernel_regularizer='l2'))
+for i in range(10):
+    model.add(Dense(512//i, activation='sigmoid', kernel_regularizer='l2'))
 model.add(Dense(1, activation='relu', ))
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.summary()
-model.fit(inputs, targets, validation_split=0.2, epochs=200, use_multiprocessing=True)
+model.fit(inputs, targets, validation_split=0.2, epochs=200, use_multiprocessing=True, batch_size=1000)
 
 with Spinner():
     test = np.array([])
