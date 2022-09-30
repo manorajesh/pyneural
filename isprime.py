@@ -1,13 +1,12 @@
 from keras.models import Sequential
-from keras.layers import Dense, Activation
-from keras import Input
+from keras.layers import Dense
 import numpy as np
 from math import sqrt
 
 ## Spinner
 import sys
 import time
-import threading
+import threading    
 
 class Spinner:
     busy = False
